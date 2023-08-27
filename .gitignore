@@ -1,0 +1,30 @@
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Database
+*.sqlite
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*~
+
+# Build output
+build/
+dist/
