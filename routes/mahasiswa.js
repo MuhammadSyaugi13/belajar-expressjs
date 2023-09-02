@@ -1,18 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../config/mysql')
+const db = require('../config/database/mysql')
+const controller = require('../controller/indexController')
 
-router.get('/', (req, res, next) => {
-    var sql = 'SELECT * FROM mahasiswa'
-    db.query(sql, (err, result) => {
-        if (err) throw err;
+/*get all data dengan sequelize*/
+router.get('/', controller.mahasiswa.getAll)
+router.get('/export-excel', controller.exportExcel.exportToExcel)
 
-        res.status(200).json({
-            message: 'Get method mahasiswa',
-            data: result
-        })
-    })
-})
+/*get all data tanpa sequelize*/
+// router.get('/', (req, res, next) => {
+//     var sql = 'SELECT * FROM mahasiswa'
+//     db.query(sql, (err, result) => {
+//         if (err) throw err;
+
+//         res.status(200).json({
+//             message: 'Get method mahasiswa',
+//             data: result
+//         })
+//     })
+// })
 
 //tambah data
 router.post('/', (req, res, next) => {
@@ -92,5 +98,8 @@ router.delete('/:nim', (req, res, next) => {
         })
     })
 })
+
+// ekspor data ke excel
+
 
 module.exports = router
